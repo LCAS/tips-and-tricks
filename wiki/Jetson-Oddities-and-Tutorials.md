@@ -10,7 +10,7 @@
   - The Docker container is the best way. It has a fancy ncurses CLI, it's reasonably easy to use
   - Download the SDK docker image https://developer.nvidia.com/sdk-manager
   - Follow [this tutorial on the NVIDIA website](https://docs.nvidia.com/sdk-manager/docker-containers/index.html)
-  - See commands under ["Additional Considerations"](https://docs.nvidia.com/sdk-manager/docker-containers/index.html#additional-considerations), copy-pasted to [Appendix A: Example commands to flash JetPack](#appendix-a-example-commands-to-flash-jetpack)
+  - See commands under ["Additional Considerations"](https://docs.nvidia.com/sdk-manager/docker-containers/index.html#additional-considerations), copy-pasted to [Appendix A: Example commands to flash JetPack](#appendix-a-example-commands-to-flash-jetpack-62-onto-orion-agx-64gb)
 - [This page](https://docs.nvidia.com/jetson/jetpack/install-setup/index.html) contains all the packages the JetPack should have installed. The SDK manager utility does not always finish doing this, so fill in the missing components under the command `jetson-release`
 - It's required for your device to allow SSH passwords, as the Jetson SDK does most of its operations over SSH in this way
 - It's not recommended to flash a Jetson over the university's network, as the JetPack SDK requires wake-on-LAN
