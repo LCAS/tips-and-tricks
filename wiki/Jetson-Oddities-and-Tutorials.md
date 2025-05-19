@@ -2,6 +2,7 @@
 
 - Read all of this, especially all the linked docs, and be careful. All the data on the Jetson will be PERMANENTLY erased!
 - Required components
+  - Any NVIDIA SSO account
   - 2x ethernet cables
   - USB-C 3.x cable (plugged into the correct port, for AGX Orion 64GB the side with the GPIO pins)
   - Display port and monitor for Jetson
@@ -35,7 +36,24 @@ docker load -i ./sdkmanager-[version].[build#]-[base_OS]_docker.tar.gz
 docker tag sdkmanager:[version].[build#] sdkmanager:latest
 
 # Download everything we need
-docker run -it --privileged -v /dev/bus/usb:/dev/bus/usb/ -v /dev:/dev -v /media/$USER:/media/nvidia:slave --name JetPack_AGX_Orin_Devkit --network host sdkmanager --cli --action install --login-type devzone --product Jetson --target-os Linux --version 6.2 --target JETSON_AGX_ORIN_TARGETS --flash --license accept --stay-logged-in true --collect-usage-data enable --exit-on-finish
+docker run -it --privileged           \
+  -v /dev/bus/usb:/dev/bus/usb/       \
+  -v /dev:/dev                        \
+  -v /media/$USER:/media/nvidia:slave \
+  --name JetPack_AGX_Orin_Devkit      \
+  --network host                      \
+  sdkmanager --cli                    \
+    --action install                  \
+    --login-type devzone              \
+    --product Jetson                  \
+    --target-os Linux                 \
+    --version 6.2                     \
+    --target JETSON_AGX_ORIN_TARGETS  \
+    --flash                           \
+    --license accept                  \
+    --stay-logged-in true             \
+    --collect-usage-data disable      \
+    --exit-on-finish
 
 docker commit JetPack_AGX_Orin_Devkit jetpack_agx_orin_devkit:6.2_flash
 docker container rm JetPack_AGX_Orin_Devkit
