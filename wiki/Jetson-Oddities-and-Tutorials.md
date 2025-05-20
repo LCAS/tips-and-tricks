@@ -19,6 +19,35 @@
 
 # Getting Intel RealSense cameras to work
 
+Background of the issues and why this is here:
+Discovered when looking to run 3 Intel RealSense D435i Depth Cameras on a Jetson AGX Orion 64GB running Jetpack 6.2.
+
+when following the instruction in the README of the [realsense-ros repo](https://github.com/IntelRealSense/realsense-ros) (as of commit [1cbd81b](https://github.com/IntelRealSense/realsense-ros/commit/1cbd81be81e807eefb46f098e76381888ffc7001) on the 2nd Sept 2024) it is **Highly recommend** to build the wrapper package for ROS from source.
+
+This is perhaps the **MOST IMPORTANT PART** to getting the working, install the Intel RealSense SDK 2.0 by building the `librealsense2` from source.  
+
+This can be attempted a few way, but we have only tested the  methods below:
+
+- clone the repo for `librealsense2`
+
+```bash
+git clone https://github.com/IntelRealSense/librealsense.git
+```
+
+- the simplest way that we found is to run `libuvc_installation.sh`, located in `librealsense/scripts/libuvc_installation.sh` of the librealsense repo
+  > A copy for archival purposes can also be found in this repo [here](../scripts/realsense/libuvc_installation.sh)
+  - During this you will be asked to remove any realsense cameras attached
+  - This can take a while so maybe go get a coffee or something :wink:
+
+- After the build and installation is done you can plug in the realsense camera and run `realsense-viewer` to check if you camera is detected
+
+## RealSense D435i Specific
+
+When trying to run a Realsense D435i we found that realsense viewer was failing to communicate with the camera.
+To solve this found that flashing the camera with firmware **15.13.0.50** allowed the D435i to be detected.
+
+A link to download **15.13.0.50** for the D435i can be found [here](https://www.intelrealsense.com/download/19295/?-545513842.1652797067)
+
 # Known Issues
 - Native ROS installs on AARCH do not come with gazebo. Docker is your friend
 
