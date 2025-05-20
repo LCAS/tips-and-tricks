@@ -9,7 +9,7 @@
   - A computer running Docker
 - The GUI tool makes changes to your host operating system, it is not recommended to use it
   - The Docker container is the best way. It has a fancy ncurses CLI, it's reasonably easy to use
-  - Download the SDK docker image https://developer.nvidia.com/sdk-manager
+  - Download the SDK docker image: https://developer.nvidia.com/sdk-manager
   - Follow [this tutorial on the NVIDIA website](https://docs.nvidia.com/sdk-manager/docker-containers/index.html)
   - See commands under ["Additional Considerations"](https://docs.nvidia.com/sdk-manager/docker-containers/index.html#additional-considerations), copy-pasted to [Appendix A: Example commands to flash JetPack](#appendix-a-example-commands-to-flash-jetpack-62-onto-orion-agx-64gb)
 - [This page](https://docs.nvidia.com/jetson/jetpack/install-setup/index.html) contains all the packages the JetPack should have installed. The SDK manager utility does not always finish doing this, so fill in the missing components under the command `jetson-release`
@@ -49,10 +49,11 @@ To solve this found that flashing the camera with firmware **15.13.0.50** allowe
 A link to download **15.13.0.50** for the D435i can be found [here](https://www.intelrealsense.com/download/19295/?-545513842.1652797067)
 
 # Known Issues
-- Native ROS installs on AARCH do not come with gazebo. Docker is your friend
+- Native ROS installs on AARCH do not come with gazebo. Docker is your friend for gazebo
 
 
 # Appendix A: Example commands to flash JetPack 6.2 onto Orion AGX 64GB
+> A PC with Desktop Environment is required
 ```bash
 # To fix "Known Issues"
 sudo apt install qemu-user-static binfmt-support
