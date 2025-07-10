@@ -29,6 +29,6 @@ Note: you can probably avoid the issue and let yourself move things around as yo
 ---
 
 I have yet to test out the following enhancements, but I actually need to get on with my PhD so this is for another week:
-- A GUI for configuration management: OneDrive Client for Linux GUI
-- Colorful log output terminal modification: OneDrive Client for Linux Colorful log Output
-- System Tray Icon: OneDrive Client for Linux System Tray Icon
+- A GUI for configuration management: [OneDrive Client for Linux GUI](https://github.com/bpozdena/OneDriveGUI) 
+- Colorful log output terminal modification: [OneDrive Client for Linux Colorful log Output](https://github.com/zzzdeb/dotfiles/blob/master/scripts/tools/onedrive_log)
+- System Tray Icon: [OneDrive Client for Linux System Tray Icon](https://github.com/DanielBorgesOliveira/onedrive_tray)
