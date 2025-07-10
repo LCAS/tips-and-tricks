@@ -20,7 +20,7 @@ It basically thought that I decided I wanted to delete all of the files in my on
   1. Make sure you confidently know where you want your files to sync from/to before starting.
   2. If you decide to change directories then DELETE your sharepoint confguration files and start from scratch as if you were configuring a new sharepoint
 
-It's simple if you follow the guide, but room for error can be quite consequential if you have a constant sync/monitoring process in the background because it thinks that you've decided to delete the files.
+It's simple if you follow the guide, but room for error can be quite consequential if you have a constant sync/monitoring process in the background because moving things around just means that it thinks everything has been deleted.
 
 
 --- 
