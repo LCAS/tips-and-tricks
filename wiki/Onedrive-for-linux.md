@@ -26,4 +26,9 @@ It's simple if you follow the guide, but room for error can be quite consequenti
 --- 
 Note: you can probably avoid the issue and let yourself move things around as you please if you use a Symlink, but I will not advise any more than that, up to you to try and find out if there are consequences.
 
+---
 
+I have yet to test out the following enhancements, but I actually need to get on with my PhD so this is for another week:
+- A GUI for configuration management: OneDrive Client for Linux GUI
+- Colorful log output terminal modification: OneDrive Client for Linux Colorful log Output
+- System Tray Icon: OneDrive Client for Linux System Tray Icon
