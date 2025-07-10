@@ -13,7 +13,7 @@ This has been tested on `PopOS 22.04` and `Arch Linux`, both work well.
 - Usage Guide for personal account: https://github.com/abraunegg/onedrive/blob/master/docs/usage.md
 - Usage Guide for a Sharepoint: https://github.com/abraunegg/onedrive/blob/master/docs/sharepoint-libraries.md
 
-I have had a scare where I deleted all of my files (sharepoint specifically) during confoguration of the sharpoint directory. Luckly this was cause I changes the directory it pointed to which meant my original local directory was untouched.
+I have had a scare where I deleted all of my files (sharepoint specifically) during configuration of the sharpoint directory. Luckly this was 'cause I changed the directory it pointed to which meant my original local directory was untouched.
 It basically thought that I decided I wanted to delete all of the files in my onedrive. 
 
 **So**
