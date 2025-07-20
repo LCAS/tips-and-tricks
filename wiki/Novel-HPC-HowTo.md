@@ -1,5 +1,3 @@
-# Novel HPC FAQ
-
 ## SSH Access
 
 Within the LAN: `ssh <usrname>@login.novel.hpc`. You will be prompted to login via Microsoft SSO.
