@@ -44,48 +44,6 @@ login $
 # created (i.e. at ~/my-project/.venv) and can be "reactivated" and modified at any time
 ```
 
-## Create Enroot SquashFS Images
-
-> [!CAUTION]
-> Building sqfs images is currently not working properly... input welcome. The below guide used to work, but now produces images that fail.
-
-During the building of a Dockerfile, or the creation of a squahfs, access to the filesystem of the cluster can become slow. If you can, use the image Villanelle compiled at `/home/shared/nvproj002/pytorch_n_friends.sqsh` which has nano, git and PyTorch 2.7.0 (for CUDA 12.6).
-
-### From Docker Hub to SquashFS
-
-```bash
-ENROOT_SQUASH_OPTIONS='-comp lz4 -noD' enroot import docker://ubuntu
-```
-
-### From Dockerfile to SquashFS
-
-> [!IMPORTANT]
-> It takes a *very* long time to build Dockerfiles on the HPC. Every layer your build will freeze for several minuets, it will feel like it's crashed; it hasn't. A simple container, such as my example, will take up to 30 minuets. This is likely because of the filesystem (NFS), or the configuration of it.
-
-```bash
-# Make your working directory, and copy example
-mkdir dockerdir && cd dockerdir
-cp /home/shared/nvproj002/pytorch_n_friends.Dockerfile.ci .
-# Build (please report the time to the Teams chat)
-# -t is the name Podman will associate with the image
-time podman build -t pytorch_n_friends -f pytorch_n_friends.Dockerfile.ci .
-# Convert the image (this cmd creates pytorch_n_friends.sqsh)
-# This will take 7+ mins!
-ENROOT_SQUASH_OPTIONS='-comp lz4 -noD' enroot import podman:/pytorch_n_friends
-```
-
-### Test Your Image
-
-```bash
-# Example interactive job
-srun --time=03:00:00 --job-name=interactive --partition=gpu --nodelist=hpc-novel-gpu03 --gres=gpu:nvidia_rtx_a6000:1 --mem=59G --cpus-per-task=8 --pty bash
-enroot start --mount="$HOME:$HOME" ~/pytorch_n_friends.sqsh
-```
-
-### Using Enroot
-
-Section below explains how to use Enroot in jobs (running scripts within Enroot).
-
 ## Submitting Jobs
 
 The cluster uses SLURM for accessing resources.
@@ -158,4 +116,46 @@ The only active GPUs are NVIDIA RTX A6000s (48GiB VRAM), which have 3D (OpenGL, 
 | `hpc-novel-gpu02` | AMD EPYC 7453 x2 (112 vCPUs) | 480GiB | 4x RTX A6000 (48GiB) |
 | `hpc-novel-gpu03` | AMD EPYC 7343 x1 (32 vCPUs)  | 240GiB | 4x RTX A6000 (48GiB) |
 | `hpc-novel-gpu04` | AMD EPYC 7713 x2 (256 vCPUs) | 950GiB | 8x RTX A6000 (48GiB) |
+
+## Create Enroot SquashFS Images
+
+> [!CAUTION]
+> Building sqfs images is currently not working properly... input welcome. The below guide used to work, but now produces images that fail.
+
+During the building of a Dockerfile, or the creation of a squahfs, access to the filesystem of the cluster can become slow. If you can, use the image Villanelle compiled at `/home/shared/nvproj002/pytorch_n_friends.sqsh` which has nano, git and PyTorch 2.7.0 (for CUDA 12.6).
+
+### From Docker Hub to SquashFS
+
+```bash
+ENROOT_SQUASH_OPTIONS='-comp lz4 -noD' enroot import docker://ubuntu
+```
+
+### From Dockerfile to SquashFS
+
+> [!IMPORTANT]
+> It takes a *very* long time to build Dockerfiles on the HPC. Every layer your build will freeze for several minuets, it will feel like it's crashed; it hasn't. A simple container, such as my example, will take up to 30 minuets. This is likely because of the filesystem (NFS), or the configuration of it.
+
+```bash
+# Make your working directory, and copy example
+mkdir dockerdir && cd dockerdir
+cp /home/shared/nvproj002/pytorch_n_friends.Dockerfile.ci .
+# Build (please report the time to the Teams chat)
+# -t is the name Podman will associate with the image
+time podman build -t pytorch_n_friends -f pytorch_n_friends.Dockerfile.ci .
+# Convert the image (this cmd creates pytorch_n_friends.sqsh)
+# This will take 7+ mins!
+ENROOT_SQUASH_OPTIONS='-comp lz4 -noD' enroot import podman:/pytorch_n_friends
+```
+
+### Test Your Image
+
+```bash
+# Example interactive job
+srun --time=03:00:00 --job-name=interactive --partition=gpu --nodelist=hpc-novel-gpu03 --gres=gpu:nvidia_rtx_a6000:1 --mem=59G --cpus-per-task=8 --pty bash
+enroot start --mount="$HOME:$HOME" ~/pytorch_n_friends.sqsh
+```
+
+### Using Enroot
+
+The [Submitting Jobs](#submitting-jobs) section explains how to use Enroot in jobs (running scripts within Enroot).
 
