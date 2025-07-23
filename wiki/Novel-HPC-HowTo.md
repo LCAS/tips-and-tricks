@@ -27,7 +27,7 @@ gpu03 $ enroot start --mount="$HOME:$HOME" /home/shared/nvproj002/pytorch_n_frie
 # CD to your project
 gpu03 $ cd ~/my-project
 # Create a virtual environment in the current directory, and activate it
-gpu03 $ python3 -m venv .venv
+gpu03 $ python3 -m venv --copies --system-site-packages .venv
 gpu03 $ source .venv/bin/activate
 # Install your dependencies
 (.venv) gpu03 $ pip3 install tqdm numpy matplotlib etc...
