@@ -23,7 +23,7 @@ It's best to create and interact with venvs exclusively from within the Enroot e
 # Start an interactive job
 login $ srun --time=03:00:00 --job-name=interactive --partition=gpu --nodelist=hpc-novel-gpu03 --gres=gpu:nvidia_rtx_a6000:1 --mem=59G --cpus-per-task=8 --pty bash
 # Enter the Enroot environment of your choice (example pytorch container here)
-gpu03 $ enroot start --mount="$HOME:$HOME" /home/shared/nvproj002/pytorch_n_friends.sqsh
+gpu03 $ enroot start --mount="$HOME:$HOME" /home/shared/air/enroot-images/pytorch_n_friends.sqsh 
 # CD to your project
 gpu03 $ cd ~/my-project
 # Create a virtual environment in the current directory, and activate it
@@ -86,7 +86,7 @@ echo "Working directory: $(pwd)"
 
 nvidia-smi
 
-srun enroot start --mount="$HOME:$HOME" /home/shared/nvproj002/pytorch_n_friends.sqsh $HOME/project/launch.sh
+srun enroot start --mount="$HOME:$HOME" /shared/air/enroot-images/pytorch_n_friends.sqsh $HOME/project/launch.sh
 ```
 
 Example of the ~/project/launch.sh (must have executable bit)
@@ -120,7 +120,7 @@ The only active GPUs are NVIDIA RTX A6000s (48GiB VRAM), which have 3D (OpenGL, 
 > [!CAUTION]
 > Building sqfs images is currently not working properly... input welcome. The below guide used to work, but now produces images that fail.
 
-During the building of a Dockerfile, or the creation of a squahfs, access to the filesystem of the cluster can become slow. If you can, use the image Villanelle compiled at `/home/shared/nvproj002/pytorch_n_friends.sqsh` which has nano, git and PyTorch 2.7.0 (for CUDA 12.6).
+During the building of a Dockerfile, or the creation of a squahfs, access to the filesystem of the cluster can become slow. If you can, use the image Villanelle compiled at `/home/shared/air/enroot-images/pytorch_n_friends.sqsh ` which has nano, git and PyTorch 2.7.0 (for CUDA 12.6).
 
 ### From Docker Hub to SquashFS
 
@@ -136,7 +136,7 @@ ENROOT_SQUASH_OPTIONS='-comp lz4 -noD' enroot import docker://ubuntu
 ```bash
 # Make your working directory, and copy example
 mkdir dockerdir && cd dockerdir
-cp /home/shared/nvproj002/pytorch_n_friends.Dockerfile.ci .
+cp /home/shared//air/dockerfiles/pytorch_n_friends.Dockerfile.ci .
 # Build (please report the time to the Teams chat)
 # -t is the name Podman will associate with the image
 time podman build -t pytorch_n_friends -f pytorch_n_friends.Dockerfile.ci .
