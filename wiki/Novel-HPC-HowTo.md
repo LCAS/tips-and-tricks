@@ -1,6 +1,6 @@
 ## SSH Access
 
-Within the LAN: `ssh <usrname>@login.novel.hpc`. You will be prompted to login via Microsoft SSO.
+Within the LAN: `ssh <usrname>@login.novel.hpc.network.uni`. You will be prompted to login via Microsoft SSO.
 
 Hint: `man ssh-copy-id` for how to use `ssh-copy-id` or see `man ssh` AUTHENTICATION section for more detail, and `man ssh-keygen`.
 
